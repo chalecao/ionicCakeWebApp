@@ -1,0 +1,48 @@
+<ion-view view-title="{{global.title}}">
+    <ion-header-bar align-title="center" class="header-bar">
+        <div class="buttons">
+            <a ng-click="goBack()"
+               class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+        </div>
+        <h1 class="title color-top">
+            <label class="item-input-wrapper search">
+                <i class="icon ion-ios-search placeholder-icon"></i>
+                <input type="search" ng-model="keyWord" class="back-grey color-grey" placeholder="口味，品牌，城市">
+            </label>
+
+        </h1>
+        <div class="buttons">
+            <a ng-click="searchCon()" class="button header-select color-top">搜索</a>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="button-bar select-cat">
+            <a ng-click="selectCat(1)" ng-class="{'active':category==1}" class="button ">蛋糕店</a>
+            <a ng-click="selectCat(2)" ng-class="{'active':category==2}" class="button">推荐</a>
+            <a ng-click="selectCat(3)" ng-class="{'active':category==3}" class="button">蛋糕</a>
+        </div>
+        <div ng-if="searchResult[1].cityArea.length >0 && (category==0 || category==1)" ng-class="{'item item-divider':ct.zm, 'list-inset':!ct.zm }" ng-repeat="ct in searchResult">
+            {{ct.zm?ct.content:""}}
+            <a href="{{cta.url}}" class="item no-border-lr" ng-if="!ct.zm" ng-repeat="cta in ct.cityArea">
+                <img ng-src="{{(cta.avatar || cta.coverPic) + +'@1e_100w_100h_0c_1i_1o_90Q_1x.jpg'}}" class="margin-b-n-10" width="32px" />
+                <span  ng-bind="cta.title || cta.nickname"></span>
+            </a>
+        </div>
+        <div ng-if="searchResult[3].cityArea.length >0 && (category==0 || category==2) " ng-class="{'item item-divider':ct.zm, 'list-inset':!ct.zm }" ng-repeat="ct in searchResult">
+            {{ct.zm?ct.content:""}}
+            <a href="{{cta.url}}" class="item no-border-lr" ng-if="!ct.zm" ng-repeat="cta in ct.cityArea">
+                <img ng-src="{{(cta.avatar || cta.coverPic) + +'@1e_100w_100h_0c_1i_1o_90Q_1x.jpg'}}" class="margin-b-n-10" width="32px" />
+                <span  ng-bind="cta.title || cta.nickname"></span>
+            </a>
+        </div>
+        <div ng-if="searchResult[5].cityArea.length >0 && (category==0 || category==3)" ng-class="{'item item-divider':ct.zm, 'list-inset':!ct.zm }" ng-repeat="ct in searchResult">
+            {{ct.zm?ct.content:""}}
+            <a href="{{cta.url}}" class="item no-border-lr" ng-if="!ct.zm" ng-repeat="cta in ct.cityArea">
+                <img ng-src="{{(cta.avatar || cta.coverPic) + +'@1e_100w_100h_0c_1i_1o_90Q_1x.jpg'}}" class="margin-b-n-10" width="32px" />
+                <span  ng-bind="cta.title || cta.nickname"></span>
+            </a>
+        </div>
+        <div class="text-center no-content" ng-if="!searchResult[1].cityArea.length && !searchResult[3].cityArea.length && !searchResult[5].cityArea.length">您可以输入蛋糕店品牌或名称，或地址关键字进行搜索</div>
+    </ion-content>
+</ion-view>
+

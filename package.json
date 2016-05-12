@@ -1,0 +1,30 @@
+{
+  "name": "web_app",
+  "version": "1.0.0",
+  "description": "pictcake web app",
+  "main": "gulpfile.js",
+  "scripts": {
+      "start": "http-server dist -a 0.0.0.0 -p 8080"
+  },
+  "author": "chale",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "gulp-clean": ">=0.3.1",
+    "gulp-concat": ">=2.2.0",
+    "gulp-imagemin": ">=1.0.1",
+    "gulp-jshint": ">=1.5.1",
+    "gulp-minify-css": ">=0.3.0",
+    "gulp-minify-html": "^0.1.4",
+    "gulp-ng-template": "^0.1.0",
+    "gulp-rename": ">=1.2.0",
+    "gulp-replace": "^0.4.0",
+    "gulp-rev": ">=0.4.2",
+    "gulp-sequence": ">=0.3.0",
+    "gulp-uglify": ">=0.3.1",
+    "gulp-usemin": ">=0.3.6",
+    "gulp-util": ">=2.2.14",
+    "http-server": "^0.8.0",
+    "merge2": "^0.2.0"
+  }
+}

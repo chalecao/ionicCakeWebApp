@@ -1,0 +1,87 @@
+<meta name="format-detection" content="telephone=no" />
+<ion-view view-title="{{global.title}}">
+    <ion-header-bar align-title="center" class="header-bar">
+        <h1 class="title color-top">我的那一刻</h1>
+        <div class="buttons">
+        <a ng-click="openSelfModal()" class="button ion-ios-gear header-select color-top font-30"></a>
+      </div>
+    </ion-header-bar>
+    <ion-content>
+        <div class="text-center background-pink padding-25">
+            <img ng-click="changeLogo()" class="user-logo" width="100px" height="100px" src="{{userlogo}}"/><br/>
+            <span ng-click="changeLogo()" class="user-name color-6" >{{username}}&nbsp;&nbsp; 积分: {{user.score || 0}}</span>
+        </div>
+        <div class="list border-tb ">
+            <a class="item no-border-lr item-icon-left item-icon-right no-border-t " href="#/tab/myOrder/1">
+                <i class="icon ion-bag"></i>
+                我的订单
+                <i class="icon ion-ios-arrow-right color-a"></i>
+            </a>
+
+            <a class="item item-icon-left item-icon-right no-border-lr " ng-click="openCouponModal()">
+                <i class="icon ion-card"></i>
+                现金券
+                <i class="icon ion-ios-arrow-right color-a"></i>
+            </a>
+            <a class="item item-icon-left item-icon-right no-border-lr " href="#">
+                <i class="icon ion-happy-outline"></i>
+                分享秀场
+                <i class="icon ion-ios-arrow-right color-a"></i>
+            </a>
+            <a class="item item-icon-left item-icon-right no-border-lr no-border-b" href="#">
+                <i class="icon ion-heart"></i>
+                收藏蛋糕
+                <i class="icon ion-ios-arrow-right color-a"></i>
+            </a>
+        </div>
+        <input  type="file" ng-file-select class="disp-none" id="select_avd" accept="image/jpg,image/jpeg,image/png,image/gif" />
+    </ion-content>
+</ion-view>
+<script id="my-self.html" type="text/ng-template">
+  <ion-modal-view class="z-index-99">
+    <ion-header-bar class="header-bar">
+      <div class="buttons">
+        <a ng-click="closeSelfModal()" class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+      </div>
+      <h1 class="title color-top">个人信息</h1>
+
+    </ion-header-bar>
+    <ion-content class="back-e">
+            <br/>
+            <p class="ship-tips color-6">个人信息</p>
+            <div class="row border-t back-f">
+                <div class="col text-center border-r color-6 font-16">昵称</div>
+                <div class="col col-75 text-center"><input class="col col-75 margin-left-125-p no-border" ng-model="self.nickname" /></div>
+            </div>
+            <div class="row border-t back-f">
+                <div class="col text-center border-r color-6 font-16">电话</div>
+                <div class="col col-75 text-center"><input class="col col-75 margin-left-125-p no-border" ng-model="self.phone" /></div>
+            </div>
+            <div class="row border-t back-f">
+                <div class="col text-center border-r color-6 font-16">邮箱</div>
+                <div class="col col-75 text-center"><input class="col col-75 margin-left-125-p no-border" ng-model="self.email" /></div>
+            </div>
+            <br/><br/>
+        <p class="ship-tips color-6">送货地址</p>
+        <div class="list border-tb back-f ">
+            <a class="item  item-icon-right no-border-t no-border-b  no-border-lr margin-left-20 no-padding-l" ng-click="openAddressModal()">
+                设置收货地址
+                <i class="icon ion-ios-arrow-right color-a"></i>
+            </a>
+
+      <ion-item class="item  item-icon-right" ng-if="addressSelect.shipUserName">
+            <h2>{{addressSelect.shipUserName}}<span ng-if="addressSelect.isDefault" class="default-address">默认地址</span></h2>
+            <p>{{addressSelect.shipTel}}</p>
+            <p>{{addressSelect.shipAddress}}</p>
+            <i class="icon ion-ios-checkmark-empty color-r"></i>
+      </ion-item>
+
+        </div>
+        <br/>
+       
+        <button ng-click="logOut()" class="button button-assertive loginBtn" >
+          退出登录
+        </button>
+    </ion-content>
+  </ion-modal-view>
+</script>

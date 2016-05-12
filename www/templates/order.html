@@ -1,0 +1,78 @@
+<ion-view view-title="{{global.title}}">
+<ion-header-bar align-title="center" class="header-bar">
+    <div class="buttons">
+        <a ng-click="goBack()"
+           class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+    </div>
+    <h1 class="title color-top">订单详情</h1>
+</ion-header-bar>
+<ion-content class="back-e">
+    <br/>
+    <div class="list border-tb back-f ">
+        <a class="item no-border-lr no-border-t margin-left-10 no-padding-l" >
+            订单编号 &nbsp;&nbsp;&nbsp;&nbsp;
+            {{order.id}}
+        </a>
+        <a class="item no-border-lr margin-left-10 no-padding-l" >
+            订单状态 &nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="color-b">{{orderStatus}}</span>
+        </a>
+        <a class="item no-border-lr margin-left-10 no-padding-l" >
+            订单总价 &nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="color-r">&yen; {{order.price}}</span>
+        </a>
+        <a ng-click="selfShip()" class="item  item-icon-right no-border-b no-border-lr margin-left-10 no-padding-l" >
+            支付方式&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="color-b">在线支付</span>
+        </a>
+    </div>
+    <br/>
+    <div class="list border-tb back-f ">
+        <a href="#/tab/cake/{{order.cakeId}}" class="item item-icon-right no-border-lr no-border-t margin-left-10 no-padding-l" >
+            蛋糕信息 &nbsp;&nbsp;&nbsp;&nbsp;
+            {{order.cakeName}}
+            <div class="color-b font-12">尺寸：
+            {{order.size}}寸 &nbsp;&nbsp;&nbsp;&nbsp;
+            口味：
+            {{order.flavor}}
+            </div>
+            <i class="icon ion-ios-arrow-right color-a"></i>
+        </a>
+        <a class="item no-border-lr margin-left-10 no-padding-l" >
+            收货方式 &nbsp;&nbsp;&nbsp;&nbsp;
+            <span>{{order.deliver==1?"送货上门":"到店自提"}}</span>
+        </a>
+        <a class="item no-border-lr margin-left-10 no-padding-l" >
+            联系人 &nbsp;&nbsp;&nbsp;&nbsp;
+            {{order.deliverUserName}} &nbsp;&nbsp;{{order.phone}}
+        </a>
+        <a class="item  item-icon-right no-border-b no-border-lr margin-left-10 no-padding-l" >
+            收货地址&nbsp;&nbsp;&nbsp;&nbsp;
+            {{order.address}}
+        </a>
+    </div>
+    <br/>
+
+    <p class="ship-tips color-6">选择支付方式</p>
+    <div class="list border-tb back-f ">
+        <a class="item item-icon-right  no-border-lr item-icon- no-border-t margin-left-20 no-padding-l" ng-click="changePay(1)" ng-if="!global.inWeixin">
+            <img src="../img/alipay.png" class="margin-b-n-10" width="32px" />
+            支付宝支付
+            <i ng-if="payMethod==1" class="icon ion-ios-checkmark-empty color-r"></i>
+        </a>
+        <a class="item item-icon-right  no-border-b no-border-lr margin-left-20 no-padding-l" ng-click="changePay(2)" ng-if="global.inWeixin">
+            <img src="../img/weixin.jpg" class="margin-b-n-10" width="32px" />
+            微信支付
+            <i ng-if="payMethod==2" class="icon ion-ios-checkmark-empty color-r"></i>
+        </a>
+    </div>
+
+    <button class="button button-assertive loginBtn" ng-click="payOrder()" ng-if="!!!order.orderStatus">
+          确认支付
+        </button>
+    <br/>
+    <br/><br/>
+</ion-content>
+</ion-view>
+
+

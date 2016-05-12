@@ -1,0 +1,127 @@
+<ion-view view-title="{{cake.title}}">
+    <ion-header-bar align-title="center" class="header-bar">
+        <div class="buttons">
+            <a ng-click="goBack()" class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+        </div>
+        <h1 class="title color-top">{{cake.title}}</h1>
+    </ion-header-bar>
+    <ion-content >
+        <ion-slide-box on-slide-changed="slideHasChanged($index)" >
+          <ion-slide  ng-repeat="pp in cake.displayList">
+            <img width="100%" height="150px" src="{{pp+'@0o_0l_350h_90q.jpg'}}" />
+          </ion-slide>
+        </ion-slide-box>
+         <div class="between stable-bg"></div>
+        <div class=" back-white">
+
+            <div class="row">
+                <img width="70px" height="70px" src="{{cake.coverPic+'@1e_100w_100h_0c_1i_1o_90Q_1x.jpg'}}" />
+                <i class="assertive col buy-price">&yen; {{cake.priceList[0]}} 起<br/><br/><span class="font-12">已售 {{cake.soldCnt||8}} 份</span></i>
+                <a ng-click="startDesign()" class="button button-assertive buy col" ng-if="cake.theme > 0">开始定制</a>
+                <a ng-click="openMakeOrderModal()" class="button button-assertive buy col" ng-if="cake.theme < 0">下单购买</a>
+
+            </div>
+             <div class="padding-horizontal dark padding-bottom"><i class="icon ion-heart assertive padding-right"></i>那一刻，用心为您做蛋糕</div>
+        </div>
+       
+        <div class="between stable-bg"></div>
+        <p ng-bind="cake.title" class="padding-horizontal font-16 padding-top"></p>
+
+        <p ng-bind-html="cake.content" class="desc height-a padding-horizontal dark"></p>
+
+        <div class="between stable-bg "></div>
+        <p class="padding-horizontal padding-top"><span>尺寸：</span><span class="color-6" ng-bind-html="cake.sizeList+'寸'"></span></p>
+        <p class="padding-horizontal"><spapn>价格：</spapn><span class="color-6" ng-bind-html="cake.priceList+'元'"></span></p>
+        <p class="padding-horizontal"><span>口味：</span><span class="color-6" ng-bind-html="cake.flavorList"></span></p>
+        <p class="border-bottom"></p>
+        <p class="padding-horizontal"><span>配送：</span><span class="color-6" ng-bind="cake.deliver?'免费配送':(cake.deliverPrice+'元')"></span></p>
+        <div class="between stable-bg"></div>
+    </ion-content>
+</ion-view>
+<script id="my-makeOrder.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar align-title="center" class="header-bar">
+            <div class="buttons">
+                <a ng-click="closeMakeOrderModal()"
+                   class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+            </div>
+            <h1 class="title color-top">下单</h1>
+        </ion-header-bar>
+        <ion-content class="back-e">
+            <div class="list no-margin-b">
+                <span class="item item-thumbnail-left no-border-b back-e order-cake">
+                    <img ng-src="{{cake.coverPic+'@1e_100w_100h_0c_1i_1o_90Q_1x.jpg'}}">
+                    <h2 ng-bind="cake.title" class="order-title"></h2>
+                    <!-- <i class="color-a"><span class="soldCnt " ng-bind="'店长推荐: '+ (c.soldCnt || 8)    "></span><i class="icon ion-ios-star-outline font-16 margin-left-10"></i></i>-->
+                    <div class="money ">价格：&nbsp;&nbsp;
+                    <i class="icon color-r pull-right font-16">&yen; {{order.price}}</i></div>
+                     <div class="row ">
+                         <button ng-repeat="flavor in cake.flavorList" ng-if="flavor!='false'" class="button order-size" ng-class="{'select':order.flavor==flavor}" ng-click="selectFlavor(flavor)">{{flavor}}</button>
+
+                     </div>
+                    <!--<i class="color-r ion-minus-circled font-30" ng-click="minusOne()"></i>-->
+                    <!--<input type="text" class="inline-block order-num" ng-model="order.num">-->
+                   <!--<i class="color-r ion-plus-circled font-30" ng-click="plusOne()"></i>-->
+                </span>
+            </div>
+
+            <span></span>
+            <div class="row ">
+                <button ng-repeat="size in cake.sizeList" class="button order-size font-12" ng-class="{'select':order.size==size}" ng-click="selectSize(size,$index)">{{size}}寸</button>
+            </div>
+            <p class="size-tips">{{tips}}</p>
+            <p class="ship-tips color-6">配送服务</p>
+            <div class="list border-tb back-f ">
+                <a ng-click="freeShip()" class="item no-border-lr item-icon-right no-border-t margin-left-20 no-padding-l" >
+                    送货上门
+                    <i class="icon color-r" ng-class="{'ion-ios-checkmark':order.deliver==1}"></i>
+                </a>
+                <a ng-click="selfShip()" class="item  item-icon-right no-border-b no-border-lr margin-left-20 no-padding-l" >
+                    门店自提
+                    <i class="icon  color-r " ng-class="{'ion-ios-checkmark':order.deliver==-1}"></i>
+                </a>
+            </div>
+            <p class="ship-tips color-6">送货地址</p>
+            <div class="list border-tb back-f ">
+                <a class="item  item-icon-right no-border-t no-border-b  no-border-lr margin-left-20 no-padding-l" ng-click="openAddressModal()">
+                    设置收货地址
+                    <i class="icon ion-ios-arrow-right color-a"></i>
+                </a>
+
+                <ion-item class="item  item-icon-right" ng-if="addressSelect.shipUserName">
+                    <h2>{{addressSelect.shipUserName}}<span ng-if="addressSelect.isDefault" class="default-address">默认地址</span></h2>
+                    <p>{{addressSelect.shipTel}}</p>
+                    <p>{{addressSelect.shipAddress}}</p>
+                    <i class="icon ion-ios-checkmark-empty color-r"></i>
+                </ion-item>
+
+            </div>
+            <p class="ship-tips color-6">订单结算</p>
+            <div class="list border-tb back-f ">
+                <a class="item no-border-lr item-icon-right no-border-t margin-left-20 no-padding-l" href="#">
+                    订单金额
+                    <i class="icon color-r pull-right font-16">&yen; {{order.price}}</i>
+                </a>
+                <a class="item  item-icon-right no-border-lr margin-left-20 no-padding-l" ng-click="selectCoupon()">
+                    现金券
+                    <i class="icon color-b font-16 margin-right-30">- &yen; {{couponSelect.price}}</i>
+                    <i class="icon ion-ios-arrow-right color-a font-16"></i>
+                </a>
+                <a class="item  item-icon-right no-border-b no-border-lr margin-left-20 no-padding-l" href="#">
+                    运费
+                    <i class="icon color-r pull-right font-16 ">&yen; 0</i>
+
+                </a>
+            </div>
+            <br/><br/><br/>
+        </ion-content>
+        <div class="bar bar-footer back-f">
+            <div class="row">
+                <span class="col color-6">共需支付：</span>
+                <i class="assertive col buy-price">&yen; {{(order.price - couponSelect.price) >0?(order.price - couponSelect.price):1}}</i>
+                <a ng-click="subOrder()" class="button button-assertive buy col">提交订单</a>
+            </div>
+        </div>
+
+    </ion-modal-view>
+</script>

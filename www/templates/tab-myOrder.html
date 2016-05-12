@@ -1,0 +1,49 @@
+<ion-view view-title="{{global.title}}" cache-view="false">
+    <ion-header-bar align-title="center" class="header-bar">
+        <div class="buttons">
+            <a ng-click="goBack()"
+               class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+        </div>
+        <h1 class="title color-top">
+            我的订单
+        </h1>
+        
+    </ion-header-bar>
+    <ion-content class="back-e">
+         <ion-refresher
+                pulling-text="下拉刷新"
+                on-refresh="doRefresh()">
+        </ion-refresher>
+        <div class="row order-bar">
+            <div class="col text-center b" ng-class="{'bottom-r':category==1}">
+                <a ng-click="selectCat(1)">未付款<i class="color-top padding-left" ng-class="{'ion-ios-arrow-down':category==1,'ion-ios-arrow-up':category!=1}"></i></a>
+            </div>
+            <div class="col text-center" ng-class="{'bottom-r':category==2}">
+                <a ng-click="selectCat(2)">已付款<i ng-class="{'ion-ios-arrow-down':category==2,'ion-ios-arrow-up':category!=2}" class="ion-ios-arrow-down color-top padding-left"></i></a>
+            </div>
+            <div class="col text-center" ng-class="{'bottom-r':category==3}">
+                <a ng-click="selectCat(3)">已完成<i ng-class="{'ion-ios-arrow-down':category==3,'ion-ios-arrow-up':category!=3}" class="ion-ios-arrow-down color-top padding-left"></i></a>
+            </div>
+        </div>
+        <div class="list back-f" ng-repeat="order in tempOrderList" ng-if="order.orderStatus >= 0">
+            <p class="color-6 padding-top padding-left">订单号：{{order.id}}
+                <a ng-click="deleteOrder(order)"><i class="icon ion-ios-trash-outline font-20 color-r right padding-right"></i></a>
+            </p>
+            <a class="item item-thumbnail-left no-border-t no-border-b" href="#/tab/order/{{order.id}}" >
+                <img ng-src="{{order.finalPic+'@1e_100w_100h_0c_0i_1o_1x.png'}}"/>
+                <h2 ng-bind="order.cakeName"></h2>
+                <p class="desc">尺寸:{{order.size}}&nbsp;&nbsp; 口味:{{order.flavor}}</p>
+                <i class="color-r">&yen; {{order.price}}</i>
+                <i class="color-b font-12">&nbsp;&nbsp;&nbsp;&nbsp;{{order.status}}</i>
+            </a>
+            <div class=" text-right padding border-t">
+                <a href="{{global.mainUrl}}#/tab/order/{{order.id}}" class="button color-top header-select button-small padding-left padding-right" ng-if="order.orderStatus == 0">去付款</a>
+                <a ng-click="notifyShop()" class="button color-top header-select button-small padding-left padding-right" ng-if="order.orderStatus == 1">提醒配送</a>
+                <a  class="button color-top header-select button-small padding-left padding-right" ng-if="order.orderStatus == 3">去评价</a>
+                <a  class="button color-top header-select button-small padding-left padding-right" ng-if="order.orderStatus == 4">申请售后</a>
+            </div>
+        </div>
+        <br/><br/>
+    </ion-content>
+</ion-view>
+

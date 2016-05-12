@@ -1,0 +1,500 @@
+/* Empty. Add your own CSS if you like */
+.ionic-body, body, button, input, select, textarea{
+    font-family: "Titillium Web", "Helvetica Neue", Helvetica, Arial, "Microsoft Yahei", sans-serif !important;;
+}
+.desc{
+    height: 40px;
+    white-space: normal !important;
+    text-overflow: ellipsis;
+}
+.soldCnt{
+    margin-left: 5px;
+    font-size: 14px;
+}
+.margin-top-44{
+    margin-top: 44px;
+}
+.font-30{
+    font-size: 30px ! important;
+}
+.font-20{
+    font-size: 20px ! important;
+}
+.font-16{
+    font-size: 16px !  important;
+}
+.font-18{
+    font-size: 18px !  important;
+}
+.font-12{
+    font-size: 12px !  important;
+}
+.font-14{
+    font-size: 14px !  important;
+}
+.color-b{
+    color: #bbb !important;   
+}
+.color-r{
+    color:#ff736f!important;   
+}
+.color-6{
+    color:#666 !important;   
+}
+.height-a{
+    height: auto !important;   
+}
+.inline-block{
+    display: inline-block ! important;
+}
+.no-a{
+    text-decoration: none;
+    color: #333;
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+.between{
+    width: 100%;
+    height: 10px;
+
+}
+.border-bottom{
+    border-bottom: 1px dashed darkgray;
+    margin-left: 10px;
+}
+.bottom-r{
+    border-bottom: 2px solid #ff736f;
+}
+.border-bottom-a{
+    border-bottom: 1px solid #aaa;
+}
+.color-top{
+    color:#ff736f;
+}
+.button:hover{
+    color:#ff736f;
+}
+.search{
+    background-color: #e3dfe1;
+    border-radius: 5px;
+    margin-top:4px;
+    height: 35px;
+}
+.search input{
+    height: 25px !important;
+}
+.select-cat{
+    border-radius: 10px;
+    margin: 10px 15px;
+    width: inherit;
+    background-color: #ff736f !important;
+    border: 1px solid #ff736f;
+}
+.select-cat .button{
+    line-height: 35px !important;
+    height: 35px !important;
+    padding: 0px !important;
+    background-color: white !important;
+    border-width: 0px 0px 0px 1px  !important;
+    border-color: #ff736f;
+    color: #ff736f;
+    min-height: 20px !important;
+}
+.select-cat .button:after{
+    content: none;
+}
+.select-cat .active{
+    background-color: #ff736f !important;
+    color: #fff;
+}
+.select-cat .button:first-child{
+    border-width: 0px 0px 0px 0px !important;
+    border-radius: 10px 0px 0px 10px !important;
+}
+.select-cat .button:last-child{
+    border-radius: 0px 10px 10px 0px !important;
+}
+.active{
+   color: #f8f4f4;
+}
+.back-grey{
+    background-color: #e3dfe1;
+}
+.back-e{
+    background-color: #eee ! important;
+}
+.back-f{
+    background-color: #fff ! important;
+}
+.color-grey{
+    color: #8f8f94 !important;
+}
+.header-bar{
+    background-color: #f7f6f6;
+    border-bottom: 1px solid #b2b2b2;
+}
+.order-bar{
+    background-color: #f7f6f6;
+    border-bottom: 1px solid #e3dfe1;
+}
+.header-select{
+    border: none;
+}
+.header-location:before{
+    padding-left: 8px !important;
+}
+.no-border{
+    border: none ! important;
+}
+.no-border-lr{
+    border-left: none;
+    border-right: none;
+
+}
+.no-border-t{
+    border-top: none;
+}
+.no-border-b{
+    border-bottom: none;
+}
+.no-margin-b{
+    margin-bottom: 0px ! important;
+}
+.no-margin{
+    margin: 0px ! important;
+}
+.no-padding-l{
+    padding-left: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.z-index-99{
+ z-index: 99;   
+}
+.small{
+    padding: 10px;
+    font-size: 14px;
+}
+.button-small{
+    min-height: 30px ! important;
+}
+.zimu{
+    font-size: 14px;
+    padding: 5px 10px;
+    display: block;
+}
+.width-80{
+    width: 80%;
+}
+/*main page*/
+.slider-pager .slider-pager-page.active {
+    color: #ec283f;
+}
+.padding-20{
+    padding: 10px;
+}
+.slogan{
+    background-color: #f3f3f5;
+}
+.slogan div{
+    background-color: #ffffff;
+    margin: 0px 5px;
+}
+.col-title{
+    border-left: 5px solid #ec283f;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+}
+.border-r{
+    border-right: 1px solid #dddddd;
+}
+.border-t{
+    border-top: 1px solid #dddddd;
+}
+.no-content{
+    width: 100%;
+    height: 100%;
+    margin-top: 50%;
+    color: #bbbbbb;
+}
+.padding-25{
+    padding: 25px;
+}
+.background-pink{
+    background-color: #faf1ef;
+}
+.margin-left-10{
+    margin-left: 10px;
+}
+.margin-left-20{
+    margin-left: 20px;
+}
+.margin-left-125-p{
+    margin-left: 12.5%;
+}
+.margin-right-10{
+    margin-right: 10px;
+}
+.margin-right-30{
+    margin-right: 30px;
+}
+.letter-space-5{
+    letter-spacing: 5px;
+}
+.disp-none{
+    display: none;
+}
+.border-tb{
+    border-top: 1px solid #dddddd;
+    border-bottom: 1px solid #dddddd;
+}
+.border-1{
+    border: 1px solid #aaa;
+}
+.list{
+    color: #666;
+}
+.color-a{
+    color: #aaa;
+    font-size: 20px !important;
+}
+.contact-icon{
+    font-size: 30px !important;
+    color: #ff736f;
+    margin-right: 10px;
+    position: relative;
+    top: -5px;
+}
+.contact-box{
+    display: inline-block;
+    color: #ff736f;
+}
+.contact-tips{
+    color: #aaa;
+    font-size: 12px;
+}
+.user-logo{
+    width: 100px;
+    height: 100px;
+    border-radius: 50px;
+}
+.login-split{
+    border-bottom: solid 1px #aaa;
+    text-align: center;
+}
+.login-split span{
+    color: #999;
+    font-size: 16px;
+    position: relative;
+    top: 10px;
+    background: white;
+    padding: 0px 10px;
+
+}
+.socialBox{
+    margin-top: 30px;
+    text-align: center;
+}
+.txt-center{
+    text-align: center;
+}
+.forgetPW{
+    color: #ff736f;
+    margin-right: 20px;
+    font-size: 14px;
+}
+/*.socialBox a{*/
+    /*width: 90px;*/
+    /*height: 25px;*/
+    /*display: inline-block;*/
+    /*background: url(../img/snsSprite.png) no-repeat;*/
+
+/*}*/
+/*.socialBox .weibo{*/
+    /*background-position: -10px -13px;*/
+    /*margin-right: 20px;*/
+/*}*/
+/*.socialBox .qq{*/
+    /*background-position: -112px -13px;*/
+/*}*/
+.login .password{
+    padding-bottom: 4px;
+}
+.loginBtn{
+      width: 100%;
+     background-color: #ff736f;
+     color: white;
+}
+.getCode{
+      position: absolute;
+      right: 10px;
+      z-index: 9;
+      top: 8px;
+}
+.popup-body{
+    color: #000;
+}
+.back-white{
+    background: #fff;
+}
+.buy-price{
+    font-size: 18px;
+    margin-top: 0px;
+
+}
+.buy{
+    font-size: 18px;
+    min-height: 50px;
+    height: 35px;
+    line-height: 40px;
+    margin-right: 10px;
+    margin-top: -5px;
+}
+.hidden{
+    display: none;
+}
+.material-item{
+    float: left;
+    width: 50px;
+    margin-left: 3px;
+    margin-top: 5px;
+}
+.order-title{
+  font-size: 20px;
+  margin-bottom: 15px;
+  margin-top: 10px;
+  padding-top: 10px;
+  height: 40px;
+  color: #666;
+}
+.money{
+    font-size: 14px;
+    margin-bottom: 10px;
+    color:#999;
+}
+.order-num{
+    width: 53px;
+    height: 30px ! important;
+  margin-top: -14px;
+  margin-left: 10px;
+  margin-right: 10px;
+  font-size: 20px ! important;
+  text-align: center;
+  border: 1px solid #aaa ! important;
+}
+.order-size{
+    min-height: 35px ! important;
+    line-height: 35px ! important;
+    margin-right: 5px;
+}
+.select{
+    border: 1px solid #ff736f;
+    color: #ff736f;
+}
+.size-tips{
+    font-size: 16px;
+    color: #ff736f;
+    margin-left: 10px;
+}
+.ship-tips{
+    font-size: 14px;
+    margin-left: 10px;
+}
+.order-cake{
+    padding-left: 145px !important;
+    min-height: 140px !important;
+}
+.order-cake img{
+    width: 120px !important;
+    height: 120px !important;
+    max-width: 120px !important;
+    max-height: 120px !important;
+}
+.order-cake .soldCnt{
+    margin-left: 0px;
+}
+.default-address{
+    font-size: 12px;
+    border: 1px solid red;
+    color: red;
+    margin-left: 20px;
+}
+.design-btn{
+    position: absolute;
+    bottom: 0px;   
+}
+.margin-b-n-10{
+    margin-bottom: -10px;
+}
+.coupon{
+    height: 50px;
+    padding-top: 10px;
+    padding-left: 20px;
+}
+.right{
+    float: right !important;
+}
+.iphoneD{
+    display: inline-block;
+    width: 43%;
+    height: 7%;
+    position: absolute;
+    top: 7%;
+    left: 11%;
+    z-index: 999;
+}
+.androidD{
+    display: inline-block;
+    width: 43%;
+    height: 7%;
+    position: absolute;
+    top: 17%;
+    left: 11%;
+    z-index: 999;
+}
+/*css reset*/
+ion-tabs.tabs-color-active-positive .tab-item.tab-item-active, ion-tabs.tabs-color-active-positive .tab-item.active, ion-tabs.tabs-color-active-positive .tab-item.activated{
+    color:#ff736f ;
+}
+.popover-arrow{
+    display: none ! important;
+}
+.popover{
+    opacity: 1;
+    margin-left: -130px;
+    height: 350px;
+    width: 270px;
+    top:10%;
+}
+.my-toggle{
+    top:5px ! important;
+}
+
+/*css font*/
+/*<link href="//fonts.useso.com/css?family=Titillium+Web:300,400,600" rel="stylesheet" type="text/css">*/
+
+/* latin-ext */
+@font-face {
+    font-family: 'Titillium Web';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(/css/anMUvcNT0H1YN4FII8wpr30ibtJ3ueB9Z81J478WEJQ.woff2) format('woff2');
+    unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+    font-family: 'Titillium Web';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(/css/anMUvcNT0H1YN4FII8wpr6YfJ4wTnNoNUCmOpdh16Tg.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}
+/* latin */
+@font-face {
+    font-family: 'Titillium Web';
+    font-style: normal;
+    font-weight: 600;
+    src: local('Titillium WebSemiBold'), local('TitilliumWeb-SemiBold'), url(/css/anMUvcNT0H1YN4FII8wpr6d1JQt-lS5nD-1TJX2NNl0.woff2) format('woff2');
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
+}

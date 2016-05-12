@@ -1,0 +1,40 @@
+<ion-view view-title="{{global.title}}">
+    <ion-header-bar align-title="center" class="header-bar">
+
+        <h1 class="title color-top">附近</h1>
+
+        <div class="buttons">
+            <a href="#/search" class="button icon-left ion-ios-search header-select color-top"></a>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <ion-refresher
+                pulling-text="下拉刷新"
+                on-refresh="doRefresh()">
+        </ion-refresher>
+        <div class="row order-bar">
+            <div class="col text-center b">
+                <a ng-click="orderByShop()">店名<i class="color-top padding-left" ng-class="{'ion-ios-arrow-down':orderShop==0,'ion-ios-arrow-up':orderShop==1}"></i></a>
+            </div>
+            <div class="col text-center">
+                <a ng-click="orderByHot()">人气指数<i ng-class="{'ion-ios-arrow-down':orderHot==0,'ion-ios-arrow-up':orderHot==1}" class="ion-ios-arrow-down color-top padding-left"></i></a>
+            </div>
+            <div class="col text-center">
+                <a ng-click="orderByComment()">信誉度<i ng-class="{'ion-ios-arrow-down':orderDistance==0,'ion-ios-arrow-up':orderDistance==1}" class="ion-ios-arrow-down color-top padding-left"></i></a>
+            </div>
+        </div>
+        <div class="list" ng-if="theNearCakeList.length > 0">
+            <a class="item item-thumbnail-left" href="#/tab/cake/{{c.id}}" ng-repeat="c in theNearCakeList">
+                <img ng-src="{{c.coverPic+'@1e_100w_100h_0c_1i_1o_90Q_1x.jpg'}}"/>
+
+                <h2 ng-bind="c.title"></h2>
+
+                <p ng-bind-html="c.content" class="desc font-12"></p>
+                <i class="color-r">&yen; {{c.priceList[0]}}</i>
+                <i class="color-a"><span class="soldCnt font-12" ng-bind="'已售出: '+ (c.soldCnt || 8)    "></span></i>
+            </a>
+        </div>
+        <div class="text-center no-content" ng-if="theNearCakeList.length < 1">附近暂无相关门店数据，我们正在行动中...</div>
+        <ion-infinite-scroll on-infinite="loadMore()" distance="1%"></ion-infinite-scroll>
+    </ion-content>
+</ion-view>

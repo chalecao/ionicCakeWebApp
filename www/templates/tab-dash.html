@@ -1,0 +1,76 @@
+<ion-view view-title="{{global.title}}">
+    <ion-header-bar align-title="center" class="header-bar">
+        <div class="buttons">
+            <a ng-click="openModal($event)"
+               class="button icon-right ion-ios-arrow-down header-select color-top header-location" ng-bind="currentCityBundle.content"></a>
+        </div>
+        <h1 class="title color-top">首页</h1>
+
+        <div class="buttons">
+            <a href="#/search" class="button icon-left ion-ios-search header-select color-top"></a>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <ion-refresher
+                pulling-text="下拉刷新"
+                on-refresh="doRefresh()">
+        </ion-refresher>
+        <ion-slide-box on-slide-changed="slideHasChanged($index)">
+            <ion-slide ng-repeat="p in posts">
+                <img width="100%" height="150px" ng-src="{{p.picture+'@0o_0l_350h_90q.jpg'}}"/>
+            </ion-slide>
+        </ion-slide-box>
+        <div class="row padding-20 slogan hidden">
+            <div class="col text-center"><img width="40px" src="img/tp_hot.png"/><br/>淘热卖</div>
+            <div class="col text-center"><img width="40px" src="img/tp_sale.png"/><br/>抢优惠</div>
+            <div class="col text-center"><img width="40px" src="img/tp_new.png"/><br/>定制爱</div>
+            <div class="col text-center"><img width="40px" src="img/tp_liwu.png"/><br/>送到家</div>
+        </div>
+        <div >
+            <div class="row text-left col-title">热门定制</div>
+            <div class="row border-t">
+                <div class="col text-center border-r"><a href="#/tab/cakeList/theme=1" class="no-a"><img width="80px" src="img/x1.jpg"/>心形</a></div>
+                <div class="col text-center"><a href="#/tab/cakeList/theme=2" class="no-a"><img width="80px" src="img/y1.jpg"/>圆形</a></div>
+            </div>
+            <div class="row border-t">
+                <div class="col text-center border-r"><a href="#/tab/cakeList/theme=3" class="no-a"><img width="80px" src="img/f2.jpg"/>方形</a></div>
+                <div class="col text-center"><a href="#/tab/cakeList/theme=4" class="no-a"><img width="80px" src="img/love.jpg"/>秀场</a></div>
+            </div>
+
+        </div>
+        <div class="row slogan"></div>
+        <div >
+            <div class="row text-left col-title">主题蛋糕</div>
+            <div class="row border-t">
+                <div class="col text-center border-r"><a href="#/tab/cakeList/theme=-1" class="no-a"><img width="80px" height="66px" src="img/y1.jpg"/><br/>情人吧</a></div>
+                <div class="col text-center border-r"><a href="#/tab/cakeList/theme=-2" class="no-a"><img width="80px" height="66px" src="img/mamu.jpg"/><br/>爱母亲</a></div>
+                <div class="col text-center "><a href="#/tab/cakeList/theme=-3" class="no-a"><img width="80px" height="66px" src="img/ba.jpg"/><br/>爱父亲</a></div>
+            </div>
+            <div class="row border-t">
+                <div class="col text-center border-r"><a href="#/tab/cakeList/theme=-4" class="no-a"><img width="80px" height="66px" src="img/y5.jpg"/><br/>儿童趴</a></div>
+                <div class="col text-center border-r"><a href="#/tab/cakeList/theme=-5" class="no-a"><img width="80px" height="66px" src="img/y2.jpg"/><br/>庆祝嗨</a></div>
+                <div class="col text-center "><a href="#/tab/cakeList/theme=-6" class="no-a"><img width="80px" height="66px" src="img/y4.jpg"/><br/>搞怪秀</a></div>
+            </div>
+
+        </div>
+        <div class="row slogan"></div>
+        <div class="list" ng-if="dashCakeList.length > 0">
+            <div class="row text-left col-title">人气榜单</div>
+            <a class="item item-thumbnail-left" href="#/tab/cake/{{c.id}}" ng-repeat="c in dashCakeList">
+                <img ng-src="{{c.coverPic+'@1e_100w_100h_0c_1i_1o_90Q_1x.jpg'}}">
+
+                <h2 ng-bind="c.title"></h2>
+
+                <p ng-bind-html="c.content" class="desc font-12"></p>
+                <i class="color-r">&yen; {{c.priceList[0]}}</i>
+                <i class="color-b"><span class="color-b soldCnt font-12" ng-bind="'已售出: '+ (c.soldCnt || 8)    "></span></i>
+            </a>
+
+        </div>
+        <div class="text-center no-content" ng-if="dashCakeList.length < 1">附近暂无相关门店数据，我们正在行动中...</div>
+        <ion-infinite-scroll
+                on-infinite="loadMore()"
+                distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>

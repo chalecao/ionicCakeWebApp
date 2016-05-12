@@ -1,0 +1,36 @@
+<ion-view view-title="{{global.title}}">
+    <ion-header-bar align-title="center" class="header-bar">
+        <div class="buttons">
+        <a ng-click="goBack()" class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+      </div>
+        <h1 class="title color-top">精选</h1>
+
+        <div class="buttons">
+            <a href="#/search" class="button icon-left ion-ios-search header-select color-top"></a>
+        </div>
+    </ion-header-bar>
+    <ion-content>
+        <ion-refresher
+                pulling-text="下拉刷新"
+                on-refresh="doRefresh()">
+        </ion-refresher>
+        <div class="list">
+            <a class="item item-thumbnail-left" href="#/tab/cake/{{c.id}}" ng-repeat="c in theCakeList">
+                <img ng-src="{{c.coverPic+'@1e_100w_100h_0c_1i_1o_90Q_1x.jpg'}}"/>
+
+                <h2 ng-bind="c.title"></h2>
+
+                <p ng-bind-html="c.content" class="desc font-12"></p>
+                <i class="color-r">&yen; {{c.priceList[0]}}</i>
+                <i class="color-a"><span class="soldCnt font-12" ng-bind="'已售出: '+ (c.soldCnt || 8)    "></span></i>
+            </a>
+
+        </div>
+        <div class="text-center no-content" ng-if="!theCakeList.length">没有相关数据 敬请期待</div>
+        <ion-infinite-scroll
+                on-infinite="loadMore()"
+                distance="1%">
+        </ion-infinite-scroll>
+    </ion-content>
+</ion-view>
+

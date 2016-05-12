@@ -1,0 +1,347 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<!--<ion-side-menus enable-menu-with-back-views="false">-->
+    <!--<ion-side-menu side="left">-->
+        <!--<ion-header-bar class="bar-stable">-->
+            <!--<h1 class="title color-top">那一刻创意数码蛋糕</h1>-->
+        <!--</ion-header-bar>-->
+        <!--<ion-content>-->
+            <!--<ion-list>-->
+                <!--<ion-item nav-clear menu-close href="#/tab/dash">-->
+                    <!--首页-->
+                <!--</ion-item>-->
+                <!--<ion-item nav-clear menu-close href="#/tab/nearby">-->
+                    <!--附近蛋糕-->
+                <!--</ion-item>-->
+                <!--<ion-item nav-clear menu-close href="#/tab/myself">-->
+                    <!--我的那一刻-->
+                <!--</ion-item>-->
+                <!--<ion-item nav-clear menu-close href="#/tab/more">-->
+                    <!--更多-->
+                <!--</ion-item>-->
+            <!--</ion-list>-->
+        <!--</ion-content>-->
+    <!--</ion-side-menu>-->
+<!--</ion-side-menus>-->
+
+<ion-tabs class="tabs-icon-top tabs-color-active-positive">
+    <!-- Dashboard Tab -->
+    <ion-tab title="首页" icon-off="ion-ios-home-outline"  icon-on="ion-ios-home" href="#/tab/dash">
+        <ion-nav-view name="tab-dash"></ion-nav-view>
+    </ion-tab>
+
+    <!-- Chats Tab -->
+    <ion-tab title="详情" href="" class="hide">
+        <ion-nav-view name="tab-detail"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="列表" href="" class="hide">
+        <ion-nav-view name="tab-cakeList"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="我的杰作" href="" class="hide">
+        <ion-nav-view name="tab-design"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="提交订单" href="" class="hide">
+        <ion-nav-view name="tab-order"></ion-nav-view>
+    </ion-tab>
+    <ion-tab title="我的订单" href="" class="hide">
+        <ion-nav-view name="tab-myOrder"></ion-nav-view>
+    </ion-tab>
+    <!-- Chats Tab -->
+    <ion-tab title="附近" icon-off="ion-ios-location-outline"  icon-on="ion-ios-location" href="#/tab/nearby">
+        <ion-nav-view name="tab-nearby"></ion-nav-view>
+    </ion-tab>
+
+    <!-- Account Tab -->
+    <ion-tab title="我的" icon-off="ion-ios-person-outline"  icon-on="ion-ios-person" href="#/tab/myself">
+        <ion-nav-view name="tab-myself"></ion-nav-view>
+    </ion-tab>
+
+    <ion-tab title="更多" icon-off="ion-ios-more-outline"  icon-on="ion-ios-more" href="#/tab/more/">
+        <ion-nav-view name="tab-more"></ion-nav-view>
+    </ion-tab>
+
+
+</ion-tabs>
+<script id="my-modal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="header-bar">
+            <div class="buttons">
+                <a ng-click="closeModal($event)" class="button color-top header-select">取消</a>
+            </div>
+            <h1 class="title color-top">选择城市</h1>
+        </ion-header-bar>
+        <ion-content>
+            <div class="list">
+                <div class="item small">
+                    当前定位城市：{{currentCityBundle.content}}
+                </div>
+
+                <div ng-class="{'item item-divider':ct.zm, 'list-inset':!ct.zm }" ng-repeat="ct in global.cityList">
+                    {{ct.zm?ct.content:""}}
+                    <div ng-click="selectCity(cta)" class="item no-border-lr" ng-if="!ct.zm"
+                         ng-repeat="cta in ct.cityArea">
+                        <span ng-bind="cta.content"></span>
+                    </div>
+                </div>
+            </div>
+
+        </ion-content>
+    </ion-modal-view>
+</script>
+<script id="my-login.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="header-bar">
+            <div class="buttons">
+                <a ng-click="closeLoginModal()"
+                   class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+            </div>
+            <h1 class="title color-top">登录</h1>
+
+            <div class="buttons">
+                <a ng-click="openRegisterModal()" class="button header-select color-top">注册</a>
+            </div>
+        </ion-header-bar>
+        <ion-content>
+            <div class="list list-inset login">
+                <label class="item item-input">
+                    <i class="icon ion-ios-person-outline"></i>
+                    <input type="text" class="my-input letter-space-5" ng-model="userTemp.username" placeholder="手机号">
+                </label>
+                <label class="item item-input password">
+                    <i class="icon ion-ios-locked-outline"></i>
+                    <input type="password" class="my-input letter-space-5" ng-model="userTemp.password"
+                           placeholder="密码">
+                </label>
+                <br/>
+                <button class="button button-assertive  loginBtn" ng-click="loginIn()">
+                    登录
+                </button>
+            </div>
+            <div class="text-right"> <a ng-click="openFindPWModal()" class="forgetPW">忘记密码?</a></div>
+            <br/>
+            <div class="login-split"><span>那一刻食品（na1ke.cn）</span></div>
+            <div class="socialBox">
+                <!--<a class="weibo" ></a>-->
+                <!--<div id="wb_connect_btn"></div>-->
+                <div id="login_container"></div>
+                <!--<br/>-->
+                <!--<div id="qqLoginBtn"></div>-->
+                <!--<a class="qq" ></a>-->
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>
+<script id="my-register.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="header-bar">
+            <div class="buttons">
+                <a ng-click="closeRegisterModal()"
+                   class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+            </div>
+            <h1 class="title color-top">注册</h1>
+
+        </ion-header-bar>
+        <ion-content>
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text" class="letter-space-5 my-input" ng-model="userNew.phone" placeholder="输入手机号"/>
+                </label>
+         <span ng-click="telCode()" class="button button-small button-assertive margin-right-10 getCode"
+               ng-class="{'disabled':flagCode}">
+            {{codeBtn}}
+          </span>
+                <label class="item item-input">
+                    <span class="input-label">验证码</span>
+                    <input type="text" class="my-input" ng-model="reg.validCode" placeholder="输入短信验证码"/>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">输入密码</span>
+                    <input type="password" class="my-input" ng-model="userNew.password" placeholder="登录密码(6位以上)"/>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">密码确认</span>
+                    <input type="password" class="my-input" ng-model="reg.validPassword" placeholder="再次输入密码(6位以上)"/>
+                </label>
+                <br/>
+                <button ng-click="registerUser()" class="button button-assertive loginBtn">
+                    注册
+                </button>
+            </div>
+
+        </ion-content>
+    </ion-modal-view>
+</script>
+<script id="my-findPW.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="header-bar">
+            <div class="buttons">
+                <a ng-click="closeFindPWModal()"
+                   class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+            </div>
+            <h1 class="title color-top">找回密码</h1>
+
+        </ion-header-bar>
+        <ion-content>
+            <div class="list">
+                <label class="item item-input">
+                    <input type="text" class="letter-space-5 my-input" ng-model="findPW.phone" placeholder="输入手机号"/>
+                </label>
+         <span ng-click="findPWTelCode()" class="button button-small button-assertive margin-right-10 getCode"
+               ng-class="{'disabled':flagPWCode}">
+            {{codePWBtn}}
+          </span>
+                <label class="item item-input">
+                    <span class="input-label">验证码</span>
+                    <input type="text" class="my-input" ng-model="findPW.validCode" placeholder="输入短信验证码"/>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">新 密码</span>
+                    <input type="password" class="my-input" ng-model="findPW.password" placeholder="登录密码(6位以上)"/>
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">密码确认</span>
+                    <input type="password" class="my-input" ng-model="findPW.validPassword" placeholder="再次输入密码(6位以上)"/>
+                </label>
+                <br/>
+                <button ng-click="findPWUser()" class="button button-assertive loginBtn">
+                    更新密码
+                </button>
+            </div>
+
+        </ion-content>
+    </ion-modal-view>
+</script>
+<script id="my-address.html" type="text/ng-template">
+    <ion-modal-view class="z-index-99">
+        <ion-header-bar class="header-bar">
+            <div class="buttons">
+                <a ng-click="closeAddressModal()"
+                   class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+            </div>
+            <h1 class="title color-top">我的地址</h1>
+
+        </ion-header-bar>
+        <ion-content class="back-e">
+            <br/><br/>
+
+            <div class="list border-tb back-f ">
+                <a ng-click="openNewAddressModal()"
+                   class="item  item-icon-right no-border-t no-border-b  no-border-lr margin-left-20 no-padding-l">
+                    新建地址
+                    <i class="icon ion-ios-plus color-r"></i>
+                </a>
+            </div>
+            <br/>
+
+            <ion-list can-swipe="true" ng-click="selectAddress(address)" ng-repeat="address in addressList"
+                      ng-if="addressList.length">
+                <ion-item class="item  item-icon-right">
+                    <h2>{{address.shipUserName}}<span ng-if="address.isDefault" class="default-address">默认地址</span></h2>
+
+                    <p>{{address.shipTel}}</p>
+
+                    <p>{{address.shipAddress}}</p>
+                    <ion-option-button class="button-info"
+                                       ng-click="delAddress(address)">
+                        <i class="icon ion-minus-circled color-r"></i>
+                    </ion-option-button>
+                    <i ng-if="address.id == addressSelect.id" class="icon ion-ios-checkmark-empty color-r"></i>
+                </ion-item>
+            </ion-list>
+            <br/>
+        </ion-content>
+    </ion-modal-view>
+</script>
+<script id="my-new-address.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="header-bar">
+            <div class="buttons">
+                <a ng-click="closeNewAddressModal()"
+                   class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+            </div>
+            <h1 class="title color-top">新建地址</h1>
+
+        </ion-header-bar>
+        <ion-content class="back-e">
+            <br/>
+
+             <!-- <div class="row border-t back-f">
+                <div class="col text-center border-r color-6 font-16">选择区</div>
+                <div class="col col-75 ">
+                    <select class="col col-75 margin-left-125-p" ng-model="newAdress.userArea"
+                            ng-options="o for o in currentCityBundle.area">
+                    </select>
+                </div>
+            </div>-->
+            <div class="row border-t back-f">
+                <div class="col text-center border-r color-6 font-16">收件人</div>
+                <div class="col col-75 text-center"><input class="col col-75 margin-left-125-p"
+                                                           ng-model="newAdress.userName"/></div>
+            </div>
+            <div class="row border-t back-f">
+                <div class="col text-center border-r color-6 font-16">手机号码</div>
+                <div class="col col-75 text-center"><input class="col col-75 margin-left-125-p"
+                                                           ng-model="newAdress.telNum"/></div>
+            </div>
+            <div class="row border-t back-f">
+                <div class="col text-center border-r color-6 font-16">详细地址</div>
+                <div class="col col-75 text-center"><textarea class="col col-75 margin-left-125-p border-1" rows="3"
+                                                              ng-model="newAdress.userAddr"></textarea></div>
+            </div>
+            <br/><br/>
+
+            <div class="list border-tb back-f ">
+                <ion-toggle ng-model="newAdress.isDefault" toggle-class="toggle-assertive">是否设为默认地址</ion-toggle>
+            </div>
+            <br/><br/>
+
+            <div class=" text-center">
+                <a ng-click="saveAddress()" class="button button-assertive save col-75  margin-left-125-p width-80">保存</a>
+            </div>
+        </ion-content>
+    </ion-modal-view>
+</script>
+<script id="my-coupon.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="header-bar">
+            <div class="buttons">
+                <a ng-click="closeCouponModal()"
+                   class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+            </div>
+            <h1 class="title color-top">我的现金券</h1>
+
+        </ion-header-bar>
+        <ion-content class="back-e">
+            <br/><br/>
+
+            <div class=" row coupon border-tb back-f">
+                <input class="pull-left col col-75" ng-model="coupon.couponCode" placeholder="输入现金券兑换码"/>
+                <a ng-click="exchangeCoupon()" class="icon-left ion-ios-plus color-r font-20 col col-25">兑换</a>
+            </div>
+            <br/>
+
+            <ion-list can-swipe="true" ng-click="selectCoupon(coup)" ng-if="coup.isUse < 2"
+                      ng-repeat="coup in couponList" ng-if="addressList.length">
+                <ion-item class="item  item-icon-right">
+                    <p>优惠金额：{{coup.price}}元</p>
+
+                    <p class="font-12">截止时间：{{coup.expireTime | date : 'yyyy-MM-dd hh:mm'}}</p>
+                    <ion-option-button class="button-info"
+                                       ng-click="delCoupon(coup)">
+                        <i class="icon ion-minus-circled color-r"></i>
+                    </ion-option-button>
+                    <i ng-if="parseInt(coup.expireTime) < new Date().getTime()" class="color-r">已过期</i>
+                    <i ng-if="coup.isUse == 0" class="color-r">未使用&nbsp;&nbsp;&nbsp;&nbsp; (最高减至1元)</i>
+                    <i ng-if="coup.isUse == 1" class="color-r">已使用</i>
+                    <i ng-if="coup.isUse == 2" class="color-r">已作废</i>
+                    <i ng-if="coup.id == couponSelect.id && parseInt(coup.expireTime) > new Date().getTime()"
+                       class="icon ion-ios-checkmark-empty color-r"></i>
+                </ion-item>
+            </ion-list>
+
+        </ion-content>
+    </ion-modal-view>
+</script>

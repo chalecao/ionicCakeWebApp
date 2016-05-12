@@ -1,0 +1,125 @@
+    <ion-view view-title="{{global.title}}">
+    <ion-header-bar align-title="center" class="header-bar">
+        <h1 class="title color-top">{{global.title}}</h1>
+    </ion-header-bar>
+    <ion-content>
+        <div class="text-center background-pink padding-25">
+            <img width="200px" src="/img/logo.png"/>
+        </div>
+        <div class="list border-tb ">
+            <a class="item no-border-lr item-icon-right no-border-t margin-left-20 no-padding-l" ng-click="openAboutModal()">
+                关于那一刻
+                <i class="icon ion-ios-arrow-right color-a"></i>
+            </a>
+           
+            <a class="item  item-icon-right no-border-lr margin-left-20 no-padding-l" ng-click="openSafeModal()">
+                服务承诺
+                <i class="icon ion-ios-arrow-right color-a"></i>
+            </a>
+            <a class="item  item-icon-right no-border-lr margin-left-20 no-padding-l" ng-click="openStoryModal()">
+                故事分享
+                <i class="icon ion-ios-arrow-right color-a"></i>
+            </a>
+            <a class="item  item-icon-right no-border-b no-border-lr margin-left-20 no-padding-l" ng-click="openOfficialModal()">
+                官方咨询
+                <i class="icon ion-ios-arrow-right color-a"></i>
+            </a>
+            <a class="item  item-icon-right no-border-b no-border-lr margin-left-20 no-padding-l" ng-click="openAppModal()">
+                APP下载
+                <i class="icon ion-ios-arrow-right color-a"></i>
+            </a>
+
+        </div>
+        <br/>
+        <div class="list border-tb text-center ">
+            <a href="tel:18042426990" class="item no-border-b no-border-t no-border-lr " >
+                <i class="icon ion-ios-telephone-outline color-a contact-icon"></i>
+                <span class="contact-box">186-1170-9409<br/><span class="contact-tips">那一刻服务热线</span></span>
+            </a>
+        </div>
+         <br/>
+    </ion-content>
+</ion-view>
+<script id="safe.html" type="text/ng-template">
+    <ion-modal-view class="z-index-99">
+        <ion-header-bar class="header-bar">
+            <div class="buttons">
+                <a ng-click="closeSafeModal()" class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+            </div>
+            <h1 class="title color-top">服务承诺</h1>
+
+        </ion-header-bar>
+        <ion-content class="back-e">
+            <img width="{{_width}}px" height="{{_height}}px" src="/img/safe.jpg"/>
+        </ion-content>
+    </ion-modal-view>
+</script>
+<script id="official.html" type="text/ng-template">
+    <ion-modal-view class="z-index-99">
+        <ion-header-bar class="header-bar">
+            <div class="buttons">
+                <a ng-click="closeOfficialModal()" class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+            </div>
+            <h1 class="title color-top">长按扫描二维码</h1>
+
+        </ion-header-bar>
+        <ion-content class="back-e">
+            <img height="100%" width="100%" src="/img/official.jpg"/>
+        </ion-content>
+    </ion-modal-view>
+</script>
+<script id="story.html" type="text/ng-template">
+    <ion-modal-view class="z-index-99">
+        <ion-header-bar class="header-bar">
+            <div class="buttons">
+                <a ng-click="closeStoryModal()" class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+            </div>
+            <h1 class="title color-top">故事分享</h1>
+
+        </ion-header-bar>
+        <ion-content class="back-e">
+            <ion-slide-box on-slide-changed="slideHasChanged($index)">
+                <ion-slide ng-repeat="p in storys">
+                    <img width="{{_width}}px" height="{{_height}}px" ng-src="{{p}}"/>
+                </ion-slide>
+            </ion-slide-box>
+
+        </ion-content>
+    </ion-modal-view>
+</script>
+<script id="about.html" type="text/ng-template">
+    <ion-modal-view class="z-index-99">
+        <ion-header-bar class="header-bar">
+            <div class="buttons">
+                <a ng-click="closeAboutModal()" class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+            </div>
+            <h1 class="title color-top">关于那一刻</h1>
+
+        </ion-header-bar>
+        <ion-content class="back-e">
+            <ion-slide-box on-slide-changed="slideHasChanged($index)">
+                <ion-slide ng-repeat="p in abouts">
+                    <img width="{{_width}}px" height="{{_height}}px" ng-src="{{p}}"/>
+                </ion-slide>
+            </ion-slide-box>
+
+        </ion-content>
+    </ion-modal-view>
+</script>
+<script id="app.html" type="text/ng-template">
+    <ion-modal-view class="z-index-99">
+        <ion-header-bar class="header-bar">
+            <div class="buttons">
+                <a ng-click="closeAppModal()" class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+            </div>
+            <h1 class="title color-top">APP下载</h1>
+
+        </ion-header-bar>
+        <ion-content class="back-e">
+            <img width="{{_width}}px" height="{{_height}}px" ng-src="/img/app.jpg"/>
+            <a ng-click="downloadTips()" class="iphoneD"></a>
+            <a href="/pictcake.apk" class="androidD"></a>
+
+        </ion-content>
+    </ion-modal-view>
+</script>

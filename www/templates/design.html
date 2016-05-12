@@ -1,0 +1,148 @@
+
+<ion-view view-title="{{global.title}}">
+    <ion-header-bar align-title="center" class="header-bar">
+        <div class="buttons" ng-click="leave()">
+            <a class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+        </div>
+        <h1 class="title color-top">定制蛋糕</h1>
+         <div class="buttons">
+        <!--<a ng-click="openPreviewModal()" class="button header-select color-top">去下单</a>-->
+        <a ng-click="openMakeOrderModal()" class="button header-select color-top">去下单</a>
+      </div>
+    </ion-header-bar>
+
+
+        <input id="selectFile" class="hidden" type="file" ng-file-select class="id-input-file" accept="image/jpg,image/jpeg,image/png,image/gif"/>
+        <img onclick="$(this).remove();$('.design-btn').removeClass('hidden');" style="z-index: 999;margin-top: 40px;" src="/img/intro.png" width="100%" height="100%"  />
+        <canvas id="canvas"  ></canvas>
+         <div class="button-bar design-btn select-cat no-margin hidden">
+            <a ng-click="selectCat(1)" ng-class="{'active':category==1}" class="button ">图库</a>
+            <a ng-click="selectCat(2)" ng-class="{'active':category==2}" class="button">照片</a>
+             <a ng-click="selectCat(3)" ng-class="{'active':category==3}" class="button">文字</a> 
+            <a ng-click="selectCat(4)" ng-class="{'active':category==4}" class="button">删除</a>
+        </div>
+
+</ion-view>
+<script id="my-preview.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar align-title="center" class="header-bar">
+            <div class="buttons">
+                <a ng-click="closePreviewModal()"
+                   class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+            </div>
+            <h1 class="title color-top">我的杰作</h1>
+            <div class="buttons">
+                <a ng-click="openMakeOrderModal()" class="button header-select color-top">去下单</a>
+            </div>
+        </ion-header-bar>
+        <ion-content class="txt-center">
+            <img id="previewImg" ng-src="{{previewImg}}" width="100%" height="100%"  />
+        </ion-content>
+    </ion-modal-view>
+</script>
+<script id="my-popover.html" type="text/ng-template">
+  <ion-popover-view>
+    <ion-content>
+        <div ng-if="category == 1" ng-repeat="item in materiaList">
+            <div class="row text-left color-top border-bottom-a">{{item.catName}}</div>
+            <ul class="box">
+                <li ng-repeat="pic in item.picList" class="material-item"><a ng-click="paintPic(pic.picture)" class="no-a"><img height="50px" ng-src="{{pic.picture+'@0o_0l_70h.png'}}"/></a></li>
+            </ul>
+        </div>
+        <div ng-if="category == 3" ng-repeat="item in textList">
+            <div class="row text-left color-top border-bottom-a">{{item.catName}}</div>
+            <ul class="box">
+                <li ng-repeat="pic in item.picList" class="material-item"><a ng-click="paintPic(pic.picture)" class="no-a"><img height="50px" ng-src="{{pic.picture+'@0o_0l_70h.png'}}"/></a></li>
+            </ul>
+        </div>
+    </ion-content>
+  </ion-popover-view>
+</script>
+<script id="my-makeOrder.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar align-title="center" class="header-bar">
+            <div class="buttons">
+                <a ng-click="closeMakeOrderModal()"
+                   class="button icon-right ion-ios-arrow-back header-select color-top header-location"></a>
+            </div>
+            <h1 class="title color-top">下单</h1>
+        </ion-header-bar>
+        <ion-content class="back-e">
+            <div class="list no-margin-b">
+                <span class="item item-thumbnail-left no-border-b back-e order-cake">
+                    <img ng-src="{{previewImg}}">
+                    <h2 ng-bind="cake.title" class="order-title"></h2>
+                    <!-- <i class="color-a"><span class="soldCnt " ng-bind="'店长推荐: '+ (c.soldCnt || 8)    "></span><i class="icon ion-ios-star-outline font-16 margin-left-10"></i></i>-->
+                    <div class="money ">价格：&nbsp;&nbsp;
+                    <i class="icon color-r pull-right font-16">&yen; {{order.price}}</i></div>
+                   
+                    <!--<i class="color-r ion-minus-circled font-30" ng-click="minusOne()"></i>-->
+                    <!--<input type="text" class="inline-block order-num" ng-model="order.num">-->
+                   <!--<i class="color-r ion-plus-circled font-30" ng-click="plusOne()"></i>-->
+                    <div class="row ">
+                        <button ng-repeat="flavor in cake.flavorList" ng-if="flavor!='false'" class="button order-size" ng-class="{'select':order.flavor==flavor}" ng-click="selectFlavor(flavor)">{{flavor}}</button>
+
+                    </div>
+                </span>
+            </div>
+
+            <span></span>
+            <div class="row ">
+                <button ng-repeat="size in cake.sizeList" class="button order-size font-12" ng-class="{'select':order.size==size}" ng-click="selectSize(size,$index)">{{size}}寸</button>
+            </div>
+            <p class="size-tips">{{tips}}</p>
+            <p class="ship-tips color-6">配送服务</p>
+            <div class="list border-tb back-f ">
+                <a ng-click="freeShip()" class="item no-border-lr item-icon-right no-border-t margin-left-20 no-padding-l" >
+                    送货上门
+                    <i class="icon color-r" ng-class="{'ion-ios-checkmark':order.deliver==1}"></i>
+                </a>
+                <a ng-click="selfShip()" class="item  item-icon-right no-border-b no-border-lr margin-left-20 no-padding-l" >
+                    门店自提
+                    <i class="icon  color-r " ng-class="{'ion-ios-checkmark':order.deliver==-1}"></i>
+                </a>
+            </div>
+            <p class="ship-tips color-6">送货地址</p>
+            <div class="list border-tb back-f ">
+                <a class="item  item-icon-right no-border-t no-border-b  no-border-lr margin-left-20 no-padding-l" ng-click="openAddressModal()">
+                    设置收货地址
+                    <i class="icon ion-ios-arrow-right color-a"></i>
+                </a>
+                
+          <ion-item class="item  item-icon-right" ng-if="addressSelect.shipUserName">
+                <h2>{{addressSelect.shipUserName}}<span ng-if="addressSelect.isDefault" class="default-address">默认地址</span></h2>
+                <p>{{addressSelect.shipTel}}</p>
+                <p>{{addressSelect.shipAddress}}</p>
+                <i class="icon ion-ios-checkmark-empty color-r"></i>
+          </ion-item>
+   
+            </div>
+            <p class="ship-tips color-6">订单结算</p>
+            <div class="list border-tb back-f ">
+                <a class="item no-border-lr item-icon-right no-border-t margin-left-20 no-padding-l" href="#">
+                    订单金额
+                    <i class="icon color-r pull-right font-16">&yen; {{order.price}}</i>
+                </a>
+                <a class="item  item-icon-right no-border-lr margin-left-20 no-padding-l" ng-click="selectCoupon()">
+                    现金券
+                    <i class="icon color-b font-16 margin-right-30">- &yen; {{couponSelect.price}}</i>
+                    <i class="icon ion-ios-arrow-right color-a font-16"></i>
+                </a>
+                <a class="item  item-icon-right no-border-b no-border-lr margin-left-20 no-padding-l" href="#">
+                    运费
+                    <i class="icon color-r pull-right font-16 ">&yen; 0</i>
+                    
+                </a>
+            </div>
+            <br/><br/><br/>
+        </ion-content>
+        <div class="bar bar-footer back-f">
+            <div class="row">
+                <span class="col color-6">共需支付：</span>
+                <i class="assertive col buy-price">&yen; {{(order.price - couponSelect.price) >0?(order.price - couponSelect.price):1}}</i>
+                <a ng-click="subOrder()" class="button button-assertive buy col">提交订单</a>
+            </div>
+        </div>
+        
+    </ion-modal-view>
+</script>
